@@ -1,13 +1,24 @@
 {
 	"compilerOptions": {
-	  "target": "es6",
-	  "module": "commonjs",
-	  "outDir": "dist"
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"module": "commonjs",
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"sourceMap": false,
+		"target": "es6",
+		"outDir": "./dist"
 	},
 	"include": [
-	  "src/**/*.ts"
+	  "./"
 	],
 	"exclude": [
-	  "node_modules"
+		"node_modules",
+		".vscode",
+		".git",
+		"**/*.spec.ts",
+		"dist"
 	]
   }

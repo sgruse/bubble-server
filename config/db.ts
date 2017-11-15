@@ -1,5 +1,6 @@
 
 import { Sequelize, Options, SyncOptions, Promise as Bluebird } from 'sequelize'
+
 import * as url from 'url'
 
 const connectionConfig: Options = {
@@ -16,12 +17,12 @@ const connectionConfig: Options = {
 export default class DBClient extends Sequelize {
 	private static _instance: DBClient
 
-	private static getDatabaseClientURL (): string {
+	private static getDatabaseClientURL(): string {
 		const baseURL = 'postgres://localhost:5432/bubble_server_test'
 		return baseURL
 	}
 
-	private constructor (uri: string, opts: Options) {
+	private constructor(uri: string, opts: Options) {
 		if (process.env.PG_USER && process.env.PG_PASS && process.env.PG_NAME) {
 			const pgURL = url.parse(uri)
 			opts.host = pgURL.hostname
@@ -32,7 +33,7 @@ export default class DBClient extends Sequelize {
 		}
 	}
 
-	public static get SharedInstance () {
+	public static get SharedInstance() {
 		if (!DBClient._instance) {
 			const databaseURL = this.getDatabaseClientURL()
 			DBClient._instance = new this(databaseURL, connectionConfig)
@@ -40,7 +41,7 @@ export default class DBClient extends Sequelize {
 		return DBClient._instance
 	}
 
-	public sync (options?: SyncOptions): Bluebird<any> {
+	public sync(options?: SyncOptions): Bluebird<any> {
 		if (!options) {
 			options = {}
 		}
